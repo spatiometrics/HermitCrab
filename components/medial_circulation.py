@@ -1,10 +1,11 @@
-"""Given a surface indicating walkable area, draws potential circulation paths by finding medial lines.
+"""Generates circulation lines for a surface indicating walkable area.
             Inputs:
-                AS: Analysis Surface - A single planar surface indicating the area in which a person can walk. Holes should be cut out for any barriers such as furniture or walls.
-                L: Voronoi Segment Length - (Optional): The distance between sample points along the edge of the surface used to generate the voronoi and medial axis. Defaults to 1. Lower values will result in more accurate medial lines, but will increase computation time.
+                AS: Analysis Surface - A single planar surface indicating walkable area.
+                L: Voronoi Segment Length - The spacing of segment samples used to generate the voronoi.
+                T: Tolerance: Threshold for cleaning medial lines.
             Output:
-                ML: Medial Lines - The resulting medial line segments, corresponding to the simulated circulation paths.
-                V: Voronoi Cells - The resulting voronoi cells."""
+                ML: Medial Lines
+                V: Voronoi Cells"""
 
 from ghpythonlib.componentbase import executingcomponent as component
 import Grasshopper, GhPython
@@ -15,7 +16,7 @@ import rhinoscriptsyntax as rs
 import ghpythonlib.components as ghc
 
 __author__ = "Jim Peraino"
-__version__ = "2020.04.22"
+__version__ = "2020.05.15"
 
 
 def checkIntersection(seg, AS, tolerance):
@@ -31,17 +32,16 @@ def checkIntersection(seg, AS, tolerance):
 
 class MyComponent(component):
     
-    def RunScript(self, AS, L):
+    def RunScript(self, AS, L, T):
         
-        # Initialize outputs
         ML = None
         V = None
 
         # Set defaults if no values are provided
         if L == None:
             L = 1
-
-        T = 0.005
+        if T == None:
+            T = 0.005
 
         results = []
         medial_lines = []
@@ -67,7 +67,7 @@ class MyComponent(component):
             if checkIntersection(voronoi_seg, AS, tolerance):
                 medial_lines.append(voronoi_seg)
 
-        # Return outputs:
+        # Return outputs if you have them; here I try it for you:
         ML = medial_lines
         V = voronoi
         return ML, V
