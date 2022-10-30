@@ -4,6 +4,8 @@ Hermit Crab for Grasshopper is an open-source toolkit for Grasshopper that analy
 
 Hermit Crab is a work in progress -- we hope to hear from you with suggestions for improvement!
 
+<img src="https://github.com/spatiometrics/HermitCrab/blob/master/tutorial/Spatio_Social-Distancing-Supermarket-2.jpg">
+
 # Getting Started
 Hermit Crab for Grasshopper is currently compatible with Grasshopper for Rhino 6 (Windows/PC). 
 
@@ -16,7 +18,9 @@ Get started by downloading the latest version (email us for beta access!). Save 
 
 Hermit Crab works by 1) generating circulation paths, 2) calculating clearance widths along the path, and then 3) tabulating a score for each analysis point by summing the number of nearby paths that are too narrow.
 
-Sample files are provided with the components. Step-by-step instructions coming soon.
+Download the sample files to get started, which are provided with the components. Sample output as visualized by Grasshopper in Rhino is below.
+
+<img src="https://github.com/spatiometrics/HermitCrab/blob/master/tutorial/Social-Distancing-Plan.jpg">
 
 # Components
 
